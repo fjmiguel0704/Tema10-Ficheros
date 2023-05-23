@@ -1,4 +1,4 @@
-package ejercicios;
+package ejercicio1;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ public class Ejercicio1 {
 		double media;
 
 		try {
-			Scanner read = new Scanner(new FileReader("src\\ejercicios\\NumerosReales.txt"));
+			Scanner read = new Scanner(new FileReader("src\\ejercicio1\\NumerosReales.txt"));
 			do {
 				numero = read.nextInt();
 				suma += numero;
