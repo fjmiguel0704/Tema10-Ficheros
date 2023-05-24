@@ -20,19 +20,19 @@ public class Ejercicio7 {
 
 		BufferedWriter bw = null;
 
-		TreeMap<String, Long> agenda = new TreeMap<String, Long>();
+		TreeMap<String, Long> datos = new TreeMap<String, Long>();
 		try {
-			read = new Scanner(new FileReader("src\\ejercicio7\\Agenda.txt"));
+			read = new Scanner(new FileReader("src\\ejercicio7\\datos.txt"));
 			while (read.hasNextLine()) {
 				String[] contacts;
 				contacts = read.nextLine().split(" ");
-				agenda.put(contacts[0], Long.valueOf(contacts[1]));
+				datos.put(contacts[0], Long.valueOf(contacts[1]));
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 		try {
-			bw = new BufferedWriter(new FileWriter("src\\ejercicio7\\Agenda.txt", true));
+			bw = new BufferedWriter(new FileWriter("src\\ejercicio7\\datos.txt", true));
 			read = new Scanner(System.in);
 
 			do {
@@ -48,7 +48,7 @@ public class Ejercicio7 {
 				switch (opcion) {
 				case 1:
 
-					if (agenda.size() < 20) {
+					if (datos.size() < 20) {
 						System.out.println("Introduzca el nombre del contacto: ");
 						nombre = read.next();
 						read.nextLine();
@@ -64,8 +64,8 @@ public class Ejercicio7 {
 							tlf = read.nextLong();
 						}
 
-						if (!agenda.containsValue(tlf)) {
-							agenda.put(nombre, Long.valueOf(tlf));
+						if (!datos.containsValue(tlf)) {
+							datos.put(nombre, Long.valueOf(tlf));
 							System.out.println("Contacto añadido correctamente");
 							System.out.println();
 						} else {
@@ -73,7 +73,7 @@ public class Ejercicio7 {
 							System.out.println();
 						}
 					} else {
-						System.err.println("La agenda está llena");
+						System.err.println("La datos está llena");
 						System.out.println();
 					}
 					break;
@@ -82,9 +82,9 @@ public class Ejercicio7 {
 					nombre = read.next();
 					read.nextLine();
 
-					if (agenda.containsKey(nombre)) {
+					if (datos.containsKey(nombre)) {
 						System.out.print("El teléfono del contacto " + nombre + " es: ");
-						System.out.println(agenda.get(nombre));
+						System.out.println(datos.get(nombre));
 						System.out.println();
 					} else {
 						System.err.println("El contacto no se encuentra");
@@ -94,13 +94,13 @@ public class Ejercicio7 {
 					break;
 				case 3:
 					System.out.println("LISTA DE CONTACTOS");
-					for (Entry<String, Long> values : agenda.entrySet()) {
+					for (Entry<String, Long> values : datos.entrySet()) {
 						System.out.println("- Nombre: " + values.getKey());
 						System.out.println("  Número de teléfono: " + values.getValue());
 					}
 					break;
 				case 4:
-					for (Entry<String, Long> values : agenda.entrySet()) {
+					for (Entry<String, Long> values : datos.entrySet()) {
 						bw.write(values.getKey() + " " + values.getValue());
 						bw.newLine();
 					}
