@@ -10,8 +10,9 @@ public class Ejercicio4 {
 	public static void main(String[] args) {
 		String palabras = "";
 		Scanner read = new Scanner(System.in);
+		BufferedWriter escribir = null;
 		try {
-			BufferedWriter escribir = new BufferedWriter(new FileWriter("src\\ejercicio4\\escritura.txt"));
+			escribir = new BufferedWriter(new FileWriter("src\\ejercicio4\\escritura.txt"));
 			while (!palabras.equals("fin")) {
 				System.out.println("Introduce palabras: ");
 				palabras = read.nextLine();
@@ -21,10 +22,18 @@ public class Ejercicio4 {
 				}
 			}
 			escribir.flush();
-			escribir.close();
 		} catch (IOException e) {
 			System.out.println("No existe el fichero");
 			e.getMessage();
+		} finally {
+			if (escribir != null) {
+				try {
+					escribir.close();
+					read.close();
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+			}
 		}
 
 	}
