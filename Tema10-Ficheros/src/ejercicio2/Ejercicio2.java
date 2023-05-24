@@ -7,23 +7,38 @@ import java.util.Scanner;
 public class Ejercicio2 {
 
 	public static void main(String[] args) {
+		// Guardará cada uno de los números del fichero
 		int numeros;
-		int suma=0;
+		// Guardará el resultado de sumar todos los numeros
+		int suma = 0;
+		// Media de la suma de todos los numeros
 		double media;
-		int cont=0;
+		// Contadpr de numeros
+		int cont = 0;
 		try {
+
+			// Creamos el Scanner para leer el fichero
 			Scanner read = new Scanner(new FileReader("src\\ejercicio2\\Enteros.txt"));
-			while(read.hasNext()) {
-				numeros=read.nextInt();
-				suma+=numeros;
+
+			// Mientras existan datos en el fichero
+			while (read.hasNext()) {
+				// Leemos los numeros del fichero
+				numeros = read.nextInt();
+				// Vamos sumando los numeros
+				suma += numeros;
+				// Incrementamos el contador
 				cont++;
 			}
+
+			// Si se da la excepcion, mostramos un mensaje de error
 		} catch (FileNotFoundException e) {
 			System.out.println("No se ha encontrado el fichero");
 			e.getMessage();
 		}
-		
-		media=(double)suma/cont;
+
+		// Calculamos la media
+		media = (double) suma / cont;
+		// Mostramos la suma y la media
 		System.out.println("Suma de números: " + suma + "\n" + "Media: " + media);
 
 	}
